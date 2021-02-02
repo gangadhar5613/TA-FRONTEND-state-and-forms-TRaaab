@@ -10,9 +10,10 @@ class Cards extends React.Component{
             order:'',
             allProducts:[...props.products],
             cartProducts:[],
-            finalCartProducts:{},
+            finalCartProducts:{ },
             cartPrices:[],
             toggle:false,
+            0:0,
             1:0,
             2:0,
             3:0,
@@ -130,7 +131,7 @@ class Cards extends React.Component{
     handleAddToCart =  (event) => {
       console.log(event.target.dataset)
        let id = event.target.dataset.card
-       let addedProducts = data.products.filter((product) => product.id == id)
+       let addedProducts = data.products.filter((product) => product.id === Number(id))
        
        this.setState((state) => {
           let concatedProducts = state.cartProducts.concat(addedProducts);
@@ -155,7 +156,7 @@ class Cards extends React.Component{
                removeProducts[product.id] = 1
            })  
            
-           let quanityObj = {[id]:1}
+        //    let quanityObj = {[id]:1}
          
            return{
                cartProducts:repeatedProducts,

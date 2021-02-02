@@ -1,7 +1,7 @@
 import React from 'react';
 import data from '../data.json'
 import Cards from './Cards';
-import Cart from './Cart';
+// import Cart from './Cart';
 const products = data.products
 
 
@@ -17,12 +17,14 @@ class Main extends React.Component{
             ML:false,
             L:false,
             XL:false,
-            XXL:false
+            XXL:false,
+
         }
     }
 
     handleDataFilter = (size) => {
-       
+    
+        if(!this.state[size]){
             let filtered = products.filter((product) => product.availableSizes.includes(size))
             this.setState((state) => {
                 let multipleFilters = state.filtereProducts.concat([...filtered])
@@ -39,13 +41,49 @@ class Main extends React.Component{
                      [size]:!this.state[size]
                    }
             })
+        }else{
+            console.log(this.state.filtereProducts)
+            let filtered = products.filter((product) => ! (product.availableSizes.includes(size)))
+            this.setState((state) => {
+                let multipleFilters = state.filtereProducts.concat([...filtered])
+                            const finalMultipleFilteredArray = multipleFilters.reduce((acc, current) => {
+                                const product = acc.find(item => item.id === current.id);
+                                if (!product) {
+                                return acc.concat([current]);
+                                } else {
+                                return acc;
+                                }
+                            }, []);
+                 return{
+                     filtereProducts:finalMultipleFilteredArray,
+                     [size]:!this.state[size]
+                   }
+            })
+            console.log(filtered)
+        }
+
+
+
            
     }
 
     render(){
+        function dataToPass(state){
+            // let displayProduct=[]
+                    if((state.filtereProducts.length === 0) && (  ! state['XS'] && ! state['S']) && ! state['M'] && ! state['ML'] && ! state['L'] && ! state['XL'] && ! state['XXL'] ){
+                        // displayProduct = this.state.allProducts
+                        return console.log(true)
+                    }else{
+                        // displayProduct = this.state.filtereProducts
+                        return console.log(false)
+                    }
+       
+        }
+    dataToPass(this.state);
+
         let displayProducts=[]
-        if(this.state.filtereProducts.length === 0){
-             displayProducts = this.state.allProducts
+        if((this.state.filtereProducts.length === 0) && (  ! this.state['XS'] && ! this.state['S']) && ! this.state['M'] && ! this.state['ML'] && ! this.state['L'] && ! this.state['XL'] && ! this.state['XXL'] ){
+            displayProducts = this.state.allProducts
         }else{
             displayProducts = this.state.filtereProducts
         }

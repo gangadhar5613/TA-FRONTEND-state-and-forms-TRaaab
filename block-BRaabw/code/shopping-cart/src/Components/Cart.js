@@ -135,53 +135,53 @@ class Cart extends React.Component{
 
 
 
-class Products extends React.Component{
-    constructor(props){
-        super(props)
-        this.state ={
-            cartPrices :[]
-        }
-    }
+// class Products extends React.Component{
+//     constructor(props){
+//         super(props)
+//         this.state ={
+//             cartPrices :[]
+//         }
+//     }
 
     
 
-   render(){
-    return(
-        this.props.cart.map((product) => {
-            return(
-                  <div className='group  focus:bg-gray-600 group-focus:line-through hover:line-through ' >
-                      <hr className='text-white'></hr>
-                      <div className='relative py-6'>
-                          <div className='toggle-cross group-focus:text-white cursor-pointer  absolute right-4 top-0'>
-                              <i class="fas text-white fa-times"></i>
-                          </div>
-                          <div className='flex  flex-row justify-around items-center'>
-                              <div className=''>
-                                  <img className='w-15 h-20 object-center' src={`/static/products/${product.sku}_2.jpg`} alt='cart-item'></img>
-                              </div>
-                              <div className=''>
-                                  <h2 className='text-white'>{product.title}</h2>
-                                  <h3 className='text-gray-400 '>{product.availableSizes[0]} |<span className='mx-1'>{product.style}</span></h3>
-                                  <h4 className='text-gray-400 '>Quantity:<span>18</span></h4>
-                              </div>
-                              <div className='flex flex-col items-center'>
-                                  <div className='text-1xl text-yellow-500 '>
-                                      <h2>$ {product.price}</h2>
-                                  </div>
-                                  <div className='flex my-3 flex-row bg-gray-600 justify-around items-center text-white '>
-                                      <button className='cursor-pointer text-1xl mx-2'>-</button>
-                                      <button className='cursor-pointer text-1xl mx-2'>+</button>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-            )
+//    render(){
+//     return(
+//         this.props.cart.map((product) => {
+//             return(
+//                   <div className='group  focus:bg-gray-600 group-focus:line-through hover:line-through ' >
+//                       <hr className='text-white'></hr>
+//                       <div className='relative py-6'>
+//                           <div className='toggle-cross group-focus:text-white cursor-pointer  absolute right-4 top-0'>
+//                               <i class="fas text-white fa-times"></i>
+//                           </div>
+//                           <div className='flex  flex-row justify-around items-center'>
+//                               <div className=''>
+//                                   <img className='w-15 h-20 object-center' src={`/static/products/${product.sku}_2.jpg`} alt='cart-item'></img>
+//                               </div>
+//                               <div className=''>
+//                                   <h2 className='text-white'>{product.title}</h2>
+//                                   <h3 className='text-gray-400 '>{product.availableSizes[0]} |<span className='mx-1'>{product.style}</span></h3>
+//                                   <h4 className='text-gray-400 '>Quantity:<span>18</span></h4>
+//                               </div>
+//                               <div className='flex flex-col items-center'>
+//                                   <div className='text-1xl text-yellow-500 '>
+//                                       <h2>$ {product.price}</h2>
+//                                   </div>
+//                                   <div className='flex my-3 flex-row bg-gray-600 justify-around items-center text-white '>
+//                                       <button className='cursor-pointer text-1xl mx-2'>-</button>
+//                                       <button className='cursor-pointer text-1xl mx-2'>+</button>
+//                                   </div>
+//                               </div>
+//                           </div>
+//                       </div>
+//                   </div>
+//             )
                
-        })
-      )
-   }
-}
+//         })
+//       )
+//    }
+// }
 
 
 
