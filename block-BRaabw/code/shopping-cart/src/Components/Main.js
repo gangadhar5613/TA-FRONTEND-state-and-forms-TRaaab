@@ -42,20 +42,20 @@ class Main extends React.Component{
                    }
             })
         }else{
-            console.log(this.state.filtereProducts)
-            let filtered = products.filter((product) => ! (product.availableSizes.includes(size)))
+            let filtered = this.state.filtereProducts.filter((product) => ! (product.availableSizes.includes(size)))
+
             this.setState((state) => {
-                let multipleFilters = state.filtereProducts.concat([...filtered])
-                            const finalMultipleFilteredArray = multipleFilters.reduce((acc, current) => {
-                                const product = acc.find(item => item.id === current.id);
-                                if (!product) {
-                                return acc.concat([current]);
-                                } else {
-                                return acc;
-                                }
-                            }, []);
+                // let multipleFilters = state.filtereProducts.concat([...filtered])
+                //             const finalMultipleFilteredArray = multipleFilters.reduce((acc, current) => {
+                //                 const product = acc.find(item => item.id === current.id);
+                //                 if (!product) {
+                //                 return acc.concat([current]);
+                //                 } else {
+                //                 return acc;
+                //                 }
+                //             }, []);
                  return{
-                     filtereProducts:finalMultipleFilteredArray,
+                     filtereProducts:filtered,
                      [size]:!this.state[size]
                    }
             })
@@ -108,7 +108,7 @@ class Main extends React.Component{
                                           
                                           <span onClick={() => this.handleDataFilter('XL')} className={!this.state['XL'] ?'w-8 h-8 text-center hover:bg-black active:bg-black   hover:text-white focus:ring-2 focus:ring-black  cursor-pointer text-xs items-center flex justify-center rounded-full p-4 bg-gray-200':'w-8 h-8 text-center text-white hover:bg-black active:bg-black   hover:text-white focus:ring-2 focus:ring-black  cursor-pointer text-xs items-center flex justify-center rounded-full p-4 bg-black' }>XL</span>
                                          
-                                          <span onClick={() => this.handleDataFilter('XXL')} className={!this.state['XXL'] ?'w-8 h-8 text-center hover:bg-black active:bg-black   hover:text-white focus:ring-2 focus:ring-black  cursor-pointer text-xs items-center flex justify-center rounded-full p-4 bg-gray-200':'w-8 h-8 text-center text-white hover:bg-black active:bg-black   hover:text-white focus:ring-2 focus:ring-black  cursor-pointer text-xs items-center flex justify-center rounded-full p-4 bg-black' }>XXL</span>
+                                          <span onClick={() => this.handleDataFilter('XXL')} className={!this.state['XXL'] ?'w-8 h-8 text-center hover:bg-black active:bg-black    hover:text-white focus:ring-2 focus:ring-black  cursor-pointer text-xs items-center flex justify-center rounded-full p-4 bg-gray-200':'w-8 h-8 text-center text-white hover:bg-black active:bg-black   hover:text-white focus:ring-2 focus:ring-black  cursor-pointer text-xs items-center flex justify-center rounded-full p-4 bg-black' }>XXL</span>
                                     </div>
                                 </div>
                         </section>
