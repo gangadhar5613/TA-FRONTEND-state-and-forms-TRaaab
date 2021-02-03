@@ -10,9 +10,11 @@ class Cards extends React.Component{
             order:'',
             allProducts:[...props.products],
             cartProducts:[],
-            finalCartProducts:{ },
             cartPrices:[],
             toggle:false,
+            cartItems:{
+                
+            },
             0:0,
             1:0,
             2:0,
@@ -42,7 +44,7 @@ class Cards extends React.Component{
          this.setState({
              order:event.target.value
          })
-        console.log(event.target.value)
+    
         switch (event.target.value) {
             case 'increase':
                 let increasingProducts = this.props.products.sort((a,b) => a.price - b.price)
@@ -59,12 +61,15 @@ class Cards extends React.Component{
              
                 break;
             case 'select':
-                    this.setState({
-                     allProducts:[...this.props.products]
-                    })
-                  
-            break;
+                this.setState({
+                    allProducts:this.props.products
+                })
+                break;
+                
             default:
+                this.setState({
+                    allProducts:this.props.products
+                })
                 break;
         }
    
@@ -104,7 +109,8 @@ class Cards extends React.Component{
         console.log(updatedProducts)
         this.setState((state) => {
             return{
-                cartProducts:updatedProducts
+                cartProducts:updatedProducts,
+                [productId]:state[productId]-1
             }
         })
     }
@@ -193,7 +199,7 @@ class Cards extends React.Component{
                  </div>
                  <div>
                          <label className='mx-2 font-md' htmlFor='filter' id='filter' >Order By</label>
-                         <select onChange={this.handleOrderBy} className='h-8 bg-white border-2 border-gray-100' id='filters' >
+                         <select onChange={this.handleOrderBy} className='h-8 bg-white border-2 border-gray-100' id='filters' placeholder='select' >
                              <option value='select' >Select Order</option>
                              <option   value='decrease'>Highest to lowest</option>
                              <option  value='increase'>Lowest to highest</option>
@@ -203,7 +209,7 @@ class Cards extends React.Component{
             <div onClick={this.handleAddToCart} htmlFor='addToCart' className='grid grid-cols-4 gap-2'>
                {
 
-                   (this.state.order === '' ?  this.props.products.map((product) => {
+                   (this.state.order === 'select' ?  this.props.products.map((product) => {
                     
                     return  <Card key={product.id} product={product} handleQuanity={this.handleQuanity} />
                   }):
@@ -277,7 +283,7 @@ class Cards extends React.Component{
                                                     )
                                                 }
                                             </div>
-                                            <div className='checkout bg-gray-900 p-5 z-100  shadow-inner shadow-lg flex-end '>
+                                            <div className='checkout bg-gray-900 p-5 z-100   shadow-lg flex-end '>
                                                 <div className='flex flex-row text-white items-center  justify-between'>
                                                     <h2 className='text-gray-500'>SUBTOTAL</h2>
                                                     <div>
